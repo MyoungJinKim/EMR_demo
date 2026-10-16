@@ -1,0 +1,161 @@
+{
+  "provenance": {
+    "dataset": "MTS-Dialog",
+    "split": "train",
+    "paper": "Ben Abacha, Yim, Fan and Lin (EACL 2023), An Empirical Study of Clinical Note Generation from Doctor-Patient Encounters",
+    "paper_url": "https://aclanthology.org/2023.eacl-main.168/",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "repository": "https://github.com/abachaa/MTS-Dialog",
+    "revision": "3ff0801933608d6f570468c13125125fb5cabdea",
+    "source_url": "https://raw.githubusercontent.com/abachaa/MTS-Dialog/3ff0801933608d6f570468c13125125fb5cabdea/Main-Dataset/MTS-Dialog-TrainingSet.csv",
+    "source_sha256": "65a28681dd59fc159681ea026e44610f2af7bc64a0e7f892d763eb03d9f503dc",
+    "source_rows": 1201,
+    "changes": "Eight unchanged English training dialogues with line endings normalized. Korean translations and content-based SOAP review expectations were added for this demo; these are not official Korean or SOAP annotations. No validation/test dialogues are used as prompt examples.",
+    "purpose": "Manual model regression cases, never injected into runtime prompts. These checks are not a certification or full benchmark."
+  },
+  "cases": [
+    {
+      "id": "582",
+      "original_section_header": "CC",
+      "dialogue_en": "Doctor: What is going on with him?\nGuest_family: He is complaining of chest pain.",
+      "dialogue_ko": "의사: 무슨 일이 있나요?\n보호자: 가슴이 아프다고 합니다.",
+      "expected_supported_facts": {
+        "S": [
+          "Caregiver reports chest pain."
+        ],
+        "O": [],
+        "A": [],
+        "P": []
+      },
+      "review_cautions": [
+        "Do not infer a diagnosis, examination or treatment from chest pain."
+      ]
+    },
+    {
+      "id": "460",
+      "original_section_header": "ALLERGY",
+      "dialogue_en": "Doctor: Any drug allergies? \nPatient: No.",
+      "dialogue_ko": "의사: 약물 알레르기가 있나요?\n환자: 없습니다.",
+      "expected_supported_facts": {
+        "S": [
+          "Patient denies drug allergies."
+        ],
+        "O": [],
+        "A": [],
+        "P": []
+      },
+      "review_cautions": [
+        "Do not turn an explicit denial into unknown status."
+      ]
+    },
+    {
+      "id": "369",
+      "original_section_header": "EXAM",
+      "dialogue_en": "Doctor: Breath in breath out, let me tap it and see. Well, your lungs sound clear. \nPatient: Okay.",
+      "dialogue_ko": "의사: 숨을 들이쉬고 내쉬세요. 두드려서 확인해 볼게요. 폐에서 깨끗한 소리가 들립니다.\n환자: 알겠습니다.",
+      "expected_supported_facts": {
+        "S": [],
+        "O": [
+          "Clinician reports clear lung sounds."
+        ],
+        "A": [],
+        "P": []
+      },
+      "review_cautions": [
+        "Do not add normal vital signs or a normal respiratory rate."
+      ]
+    },
+    {
+      "id": "175",
+      "original_section_header": "ASSESSMENT",
+      "dialogue_en": "Guest_family: So, you mean it is something simple?\nDoctor: Yes, it is probably sinus infection and then cough secondary to that infection.\nGuest_family: Will that be treatable?\nDoctor:  Yes, it is. \nGuest_family: Okay nice.",
+      "dialogue_ko": "보호자: 그러면 단순한 문제라는 말씀이신가요?\n의사: 네, 아마 부비동 감염이고 기침은 그 감염 때문에 생긴 것 같습니다.\n보호자: 치료할 수 있나요?\n의사: 네, 치료할 수 있습니다.\n보호자: 다행이네요.",
+      "expected_supported_facts": {
+        "S": [],
+        "O": [],
+        "A": [
+          "Clinician suspects sinus infection with secondary cough; uncertainty is retained."
+        ],
+        "P": []
+      },
+      "review_cautions": [
+        "Do not present probable infection as confirmed.",
+        "No specific treatment, medication or follow-up was given."
+      ]
+    },
+    {
+      "id": "725",
+      "original_section_header": "PLAN",
+      "dialogue_en": "Doctor: How are you moving around? Are you able to perform your day to day activities?\nPatient: Little bit, not so much.\nDoctor: So just listen to your body and go around as much as you can.\nPatient: Okay.\nDoctor: Do not overstress yourself.\nPatient: Okay I can do that.",
+      "dialogue_ko": "의사: 움직이는 것은 어떤가요? 일상생활은 할 수 있나요?\n환자: 조금은 할 수 있지만 많이는 못 합니다.\n의사: 몸 상태에 맞게 가능한 만큼 움직이세요.\n환자: 알겠습니다.\n의사: 무리하지 마세요.\n환자: 그렇게 할게요.",
+      "expected_supported_facts": {
+        "S": [
+          "Patient has limited ability to perform daily activities."
+        ],
+        "O": [],
+        "A": [],
+        "P": [
+          "Activity as tolerated; avoid overexertion."
+        ]
+      },
+      "review_cautions": [
+        "Retain functional limitation and the clinician advice in their separate sections."
+      ]
+    },
+    {
+      "id": "1013",
+      "original_section_header": "MEDICATIONS",
+      "dialogue_en": "Doctor: You can take Ibuprofen as needed for pain.",
+      "dialogue_ko": "의사: 통증이 있을 때 필요에 따라 이부프로펜을 복용하셔도 됩니다.",
+      "expected_supported_facts": {
+        "S": [],
+        "O": [],
+        "A": [],
+        "P": [
+          "Clinician advised ibuprofen as needed for pain."
+        ]
+      },
+      "review_cautions": [
+        "Source label MEDICATIONS must not imply the patient already takes this medication.",
+        "Do not invent a dose or a maximum frequency."
+      ]
+    },
+    {
+      "id": "889",
+      "original_section_header": "ASSESSMENT",
+      "dialogue_en": "Doctor: How's he doing today? \nGuest_family: I think he might have fifth disease with sinusitis. It's been running rampant at his school. \nDoctor: Oh, wow. Let's see what we can do.",
+      "dialogue_ko": "의사: 오늘 상태는 어떤가요?\n보호자: 전염성 홍반과 부비동염인 것 같아요. 학교에서 많이 유행하고 있거든요.\n의사: 그렇군요. 어떻게 할 수 있을지 보겠습니다.",
+      "expected_supported_facts": {
+        "S": [
+          "Family suspects fifth disease with sinusitis, reportedly circulating at school."
+        ],
+        "O": [],
+        "A": [],
+        "P": []
+      },
+      "review_cautions": [
+        "Despite source ASSESSMENT label, the diagnosis is a family hypothesis, not a clinician diagnosis.",
+        "Do not add tests, treatment or referral."
+      ]
+    },
+    {
+      "id": "1160",
+      "original_section_header": "LABS",
+      "dialogue_en": "Doctor: Well, I am looking at your ultrasound report and honestly the only significant finding of this area is that it shows to be related to bone. \nPatient: Oh okay.",
+      "dialogue_ko": "의사: 초음파 보고서를 보고 있습니다. 이 부위에서 유의한 소견은 뼈와 관련되어 보인다는 것뿐입니다.\n환자: 그렇군요.",
+      "expected_supported_facts": {
+        "S": [],
+        "O": [
+          "Available ultrasound finding is related to bone."
+        ],
+        "A": [],
+        "P": []
+      },
+      "review_cautions": [
+        "This is an available imaging result, even though the original dataset section label is LABS.",
+        "Do not invent a specific bone diagnosis."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "nlp-ai-demo",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-16",
+  "workers_dev": true,
+  "observability": {
+    "enabled": false
+  },
+  "vpc_services": [
+    {
+      "binding": "DEMO_SERVICE",
+      "service_id": "REPLACE_WITH_VPC_SERVICE_ID"
+    }
+  ],
+  "preview_urls": false
+}

@@ -1,0 +1,45 @@
+# Local environments, downloaded runtimes and models
+.venv*/
+.demo-cache/
+.demo-tools/
+.candidate-deps/
+.wrangler/
+node_modules/
+vendor/
+models/
+data/
+
+# Recordings, generated notes, service credentials and private deployment config
+output/
+outputs/
+evidence/
+launcher_logs/
+.env
+.env.*
+!.env.example
+access.json
+tunnel-token
+fixed-tunnel.json
+public-url.txt
+deploy/cloudflare/wrangler.json*
+!deploy/cloudflare/wrangler.example.jsonc
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Build/test/editor/OS artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage*
+htmlcov/
+build/
+dist/
+.playwright-cli/
+*.log
+.DS_Store
+._*
+*.tar.gz
+*.zip
